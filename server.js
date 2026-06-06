@@ -43,7 +43,7 @@ function sendTelegram(msg) {
 
 
 function sendTelegramb(msg) {
-  const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`;
+  const url = `https://api.telegram.org/bot${BOT_TOKENB}/sendMessage?chat_id=${CHAT_IDB}&text=${encodeURIComponent(msg)}`;
 
   const req = https.get(url, (res) => {
     let body = '';
