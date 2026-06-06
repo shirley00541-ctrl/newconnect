@@ -22,13 +22,41 @@ const CHAT_ID   = "6778577761";
 const BOT_TOKENB = "8217744215:AAHRXYqwU-Twk090RW9PZ-cOO53Kmgkaphk";
 const CHAT_IDB = "8564450863";
 
+
 function sendTelegram(msg) {
-  https.get(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`);
+  const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`;
+
+  const req = https.get(url, (res) => {
+    let body = '';
+    res.on('data', (chunk) => { body += chunk; });
+    res.on('end', () => {
+      console.log('Telegram status:', res.statusCode);
+      console.log('Telegram response:', body);
+    });
+  });
+
+  req.on('error', (err) => {
+    console.error('Telegram request failed:', err.message);
+  });
 }
- 
+
+
 
 function sendTelegramb(msg) {
-  https.get(`https://api.telegram.org/bot${BOT_TOKENB}/sendMessage?chat_id=${CHAT_IDB}&text=${encodeURIComponent(msg)}`);
+  const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`;
+
+  const req = https.get(url, (res) => {
+    let body = '';
+    res.on('data', (chunk) => { body += chunk; });
+    res.on('end', () => {
+      console.log('Telegram status:', res.statusCode);
+      console.log('Telegram response:', body);
+    });
+  });
+
+  req.on('error', (err) => {
+    console.error('Telegram request failed:', err.message);
+  });
 }
 
  
