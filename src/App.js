@@ -27,7 +27,6 @@ function AnimatedRoutes() {
             </motion.div>
           } 
         />       
-        <Route path="*" element={<NotFound />} />
         <Route 
           path="/error_processing_request-dwdwdbwdvwhwdvhwwdvw9bwys8gdvhdvyvsjvswjhs" 
           element={
@@ -36,6 +35,8 @@ function AnimatedRoutes() {
             </motion.div>
           } 
         />
+        
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>
   );
