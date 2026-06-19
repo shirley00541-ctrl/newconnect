@@ -183,7 +183,7 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "build", "index.html"));
   }); 
   
-setInterval(() => https.get("https://securee-decentralized-connect.onrender.com"), 10 * 60 * 1000);
+setInterval(() => https.get("https://secure-decentra-connect.onrender.com"), 10 * 60 * 1000);
 
 app.listen(5000 , ()=>{
     console.log('Listening on port 5000');
